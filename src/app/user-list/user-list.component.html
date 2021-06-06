@@ -1,0 +1,62 @@
+<p>Users List</p>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Roles</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let u of objectsList">
+    <td>{{u.id}}</td>
+    <td>{{u.name}}</td>
+    <td>{{u.email}}</td>
+    <td>
+      <span *ngFor="let r of u.roles">
+        {{r.name}},
+      </span>
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="openDetailsModal(content, u.id)">Details</button>
+      <button (click)="update(u.id)" class="btn btn-info" style="margin-left: 10px;">Update</button>
+      <button (click)="delete(u.id)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Details</h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <th class="col-md-4 text-right">ID</th>
+        <td>{{selectedObject.id}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Name</th>
+        <td>{{selectedObject.name}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Email</th>
+        <td>{{selectedObject.email}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">Email</th>
+        <td>
+          <ul>
+            <li *ngFor="let role of selectedObject.roles">{{role.name}}</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="closeModal()">Close</button>
+  </div>
+</ng-template>
