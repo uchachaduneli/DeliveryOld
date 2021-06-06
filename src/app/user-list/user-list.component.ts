@@ -3,6 +3,7 @@ import {User} from "../user";
 import {UserService} from "../user.service";
 import {Router} from "@angular/router";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NotificationService} from "../notification.service";
 
 @Component({
   selector: 'app-user-list',
@@ -17,7 +18,7 @@ export class UserListComponent implements OnInit {
 
   objectsList: User[] = [];
 
-  constructor(private modalService: NgbModal, private userService: UserService, private router: Router) {
+  constructor(private modalService: NgbModal, private userService: UserService, private router: Router, private notifyService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class UserListComponent implements OnInit {
 
   delete(id: number) {
     this.userService.delete(id).subscribe(data => {
+      this.notifyService.showSuccess("Data Has Been Deleted Successfully !!!", "User Deletion");
       console.log(data);
       this.getObjectsList();
     });
