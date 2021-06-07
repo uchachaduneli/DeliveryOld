@@ -20,14 +20,14 @@
       </span>
     </td>
     <td class="text-center">
-      <button class="btn zoom" (click)="openDetailsModal(content, u.id)">
-        <fa-icon icon="clipboard-list" size="2x"></fa-icon>
+      <button class="btn zoom" ngbTooltip="Show Details" [openDelay]="300" [closeDelay]="500" (click)="openDetailsModal(content, u.id)">
+        <fa-icon icon="clipboard-list"></fa-icon>
       </button>
-      <button (click)="update(u.id)" class="btn zoom" style="margin-left: 10px;">
-        <fa-icon icon="pencil-alt" size="2x"></fa-icon>
+      <button (click)="update(u.id)" ngbTooltip="Edit Record" [openDelay]="300" [closeDelay]="500" class="btn zoom" style="margin-left: 10px;">
+        <fa-icon icon="pencil-alt"></fa-icon>
       </button>
-      <button (click)="delete(u.id)" class="btn zoom" style="margin-left: 10px;">
-        <fa-icon icon="trash-alt" size="2x"></fa-icon>
+      <button (click)="delete(u.id)" ngbTooltip="Delete Record" [openDelay]="300" [closeDelay]="500" class="btn zoom" style="margin-left: 10px;">
+        <fa-icon icon="trash-alt"></fa-icon>
       </button>
     </td>
   </tr>
