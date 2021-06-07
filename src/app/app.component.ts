@@ -7,6 +7,8 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'delivery';
+  loading: boolean = false;
+  errorMessage = '';
 }
 
 export const GlobalVariables = Object.freeze({

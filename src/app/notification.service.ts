@@ -10,7 +10,15 @@ export class NotificationService {
   }
 
   showSuccess(message: string, title: string) {
-    this.toastr.success(message, title, {closeButton: true, newestOnTop: true, timeOut: 3000});
+    this.toastr.success(message, title, {closeButton: true, newestOnTop: true, timeOut: 6000});
+  }
+
+  showError(message: string, title: string) {
+    this.toastr.error(message, title, {closeButton: true, newestOnTop: true, timeOut: 6000});
+  }
+
+  showInfo(message: string, title: string) {
+    this.toastr.info(message, title, {closeButton: true, newestOnTop: true, timeOut: 6000});
   }
 
 }
