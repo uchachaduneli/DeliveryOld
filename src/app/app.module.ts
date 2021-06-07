@@ -12,7 +12,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {HttpErrorInterceptor} from "./http-error.interceptor";
-import {NotificationService} from "./notification.service";
+import {FontAwesomeModule, FaIconLibrary} from "@fortawesome/angular-fontawesome";
+import {fas} from "@fortawesome/free-solid-svg-icons";
+import {far} from "@fortawesome/free-regular-svg-icons";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {NotificationService} from "./notification.service";
     FormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [
     {
@@ -40,4 +43,7 @@ import {NotificationService} from "./notification.service";
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
 }

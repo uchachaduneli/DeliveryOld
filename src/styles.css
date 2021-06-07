@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+/*@import "~@fortawesome/fontawesome-free/css/all.css";*/
 
 .footer {
   position: absolute;
@@ -9,4 +10,12 @@
   background-color: blue;
   text-align: center;
   color: white;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom)*/
 }
