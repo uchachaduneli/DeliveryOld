@@ -1,9 +1,9 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {User} from "../user";
-import {UserService} from "../user.service";
+import {User} from "../models/user";
+import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {NotificationService} from "../notification.service";
+import {NotificationService} from "../services/notification.service";
 
 @Component({
   selector: 'app-user-list',

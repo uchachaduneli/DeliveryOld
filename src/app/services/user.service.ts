@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {User} from "./user";
-import {GlobalVariables} from "./app.component";
+import {User} from "../models/user";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private BaseUrl = GlobalVariables.BASE_API_URL + "/user";
+  private BaseUrl = `${environment.apiUrl}/user`;
 
   constructor(private httpClient: HttpClient) {
   }

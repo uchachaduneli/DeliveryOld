@@ -10,8 +10,3 @@ export class AppComponent {
   loading: boolean = false;
   errorMessage = '';
 }
-
-export const GlobalVariables = Object.freeze({
-  BASE_API_URL: 'http://localhost:8080',
-  //... more of your variables
-});

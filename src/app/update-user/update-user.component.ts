@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../user";
-import {UserService} from "../user.service";
+import {User} from "../models/user";
+import {UserService} from "../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {RoleService} from "../services/role.service";
+import {Role} from "../models/role";
 
 @Component({
   selector: 'app-update-user',
@@ -12,8 +14,9 @@ export class UpdateUserComponent implements OnInit {
 
   id: number = 0;
   object: User = {} as User;
+  roles: Role[] = [];
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private userService: UserService, private roleService: RoleService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,6 +26,7 @@ export class UpdateUserComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+    this.getRolesList();
   }
 
   redirectToMainTable(): void {
@@ -41,4 +45,9 @@ export class UpdateUserComponent implements OnInit {
     this.save();
   }
 
+  private getRolesList() {
+    this.roleService.getList().subscribe(data => {
+      this.roles = data;
+    });
+  }
 }

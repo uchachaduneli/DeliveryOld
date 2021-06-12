@@ -14,19 +14,19 @@
     <td class="align-middle">{{u.id}}</td>
     <td class="align-middle">{{(u.name.length > 30) ? (u.name | slice:0:30) + '..' : (u.name)}}</td>
     <td class="align-middle">{{(u.email.length > 30) ? (u.email | slice:0:30) + '..' : (u.email)}}</td>
-    <td class="align-middle">
-      <span *ngFor="let r of u.roles">
-        {{r.name}},
-      </span>
-    </td>
+    <td class="align-middle">{{u.role}}</td>
+
     <td class="text-center">
-      <button class="btn zoom" ngbTooltip="Show Details" [openDelay]="300" [closeDelay]="500" (click)="openDetailsModal(content, u.id)">
+      <button class="btn zoom" ngbTooltip="Show Details" [openDelay]="300" [closeDelay]="500"
+              (click)="openDetailsModal(content, u.id)">
         <fa-icon icon="clipboard-list"></fa-icon>
       </button>
-      <button (click)="update(u.id)" ngbTooltip="Edit Record" [openDelay]="300" [closeDelay]="500" class="btn zoom" style="margin-left: 10px;">
+      <button (click)="update(u.id)" ngbTooltip="Edit Record" [openDelay]="300" [closeDelay]="500" class="btn zoom"
+              style="margin-left: 10px;">
         <fa-icon icon="pencil-alt"></fa-icon>
       </button>
-      <button (click)="delete(u.id)" ngbTooltip="Delete Record" [openDelay]="300" [closeDelay]="500" class="btn zoom" style="margin-left: 10px;">
+      <button (click)="delete(u.id)" ngbTooltip="Delete Record" [openDelay]="300" [closeDelay]="500" class="btn zoom"
+              style="margin-left: 10px;">
         <fa-icon icon="trash-alt"></fa-icon>
       </button>
     </td>
@@ -53,11 +53,9 @@
         <td>{{selectedObject.email}}</td>
       </tr>
       <tr>
-        <th class="text-right">Email</th>
+        <th class="text-right">Role</th>
         <td>
-          <ul>
-            <li *ngFor="let role of selectedObject.roles">{{role.name}}</li>
-          </ul>
+          {{selectedObject.role}}
         </td>
       </tr>
     </table>

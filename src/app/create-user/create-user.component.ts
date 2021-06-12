@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../user";
-import {UserService} from "../user.service";
+import {User} from "../models/user";
+import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
+import {RoleService} from "../services/role.service";
+import {Role} from "../models/role";
 
 @Component({
   selector: 'app-create-user',
@@ -11,12 +13,13 @@ import {Router} from "@angular/router";
 export class CreateUserComponent implements OnInit {
 
   object: User = new User();
+  roles: Role[] = [];
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private roleService: RoleService, private router: Router) {
   }
 
   ngOnInit(): void {
-
+    this.getRolesList();
   }
 
   redirectToMainTable(): void {
@@ -36,4 +39,9 @@ export class CreateUserComponent implements OnInit {
     this.save();
   }
 
+  private getRolesList() {
+    this.roleService.getList().subscribe(data => {
+      this.roles = data;
+    });
+  }
 }
