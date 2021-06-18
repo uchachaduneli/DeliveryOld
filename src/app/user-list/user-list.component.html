@@ -1,4 +1,8 @@
-<p>Users List</p>
+<!--<div class="card">-->
+<!--  <div class="card-header">-->
+<!--    <h5 class="card-title">თანამშრომლები</h5>-->
+<!--  </div>-->
+<!--  <div class="card-body">-->
 <table class="table table-striped table-hover text-center">
   <thead>
   <tr>
@@ -25,7 +29,8 @@
               style="margin-left: 10px;">
         <fa-icon icon="pencil-alt"></fa-icon>
       </button>
-      <button (click)="delete(u.id)" ngbTooltip="Delete Record" [openDelay]="300" [closeDelay]="500" class="btn zoom"
+      <button (click)="delete(u.id)" ngbTooltip="Delete Record" [openDelay]="300" [closeDelay]="500"
+              class="btn zoom"
               style="margin-left: 10px;">
         <fa-icon icon="trash-alt"></fa-icon>
       </button>
@@ -33,6 +38,18 @@
   </tr>
   </tbody>
 </table>
+<div class="d-flex justify-content-between p-2">
+  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="rowCount">
+    <option [ngValue]="10">10</option>
+    <option [ngValue]="20">20</option>
+    <option [ngValue]="100">100</option>
+    <option [ngValue]="500">500</option>
+  </select>
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="total" [(page)]="page"></ngb-pagination>
+</div>
+<!--  </div>-->
+<!--</div>-->
+Page N {{page}}<br> Row Count{{rowCount}}
 
 <ng-template #content let-modal>
   <div class="modal-header">

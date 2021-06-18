@@ -4,6 +4,7 @@ import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NotificationService} from "../services/notification.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-user-list',
@@ -13,6 +14,9 @@ import {NotificationService} from "../services/notification.service";
 })
 export class UserListComponent implements OnInit {
 
+  page: number = 4;
+  rowCount: number = 10;
+  total: number = 41;
 
   selectedObject: User = {} as User;
 
