@@ -1,0 +1,80 @@
+<table class="table table-striped table-hover text-center">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>სახელი</th>
+    <th>ქალაქი</th>
+    <th>შენიშვნა</th>
+    <th>შექმნ. დრო</th>
+    <th>განახ. დრო</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let u of objectsList" (dblclick)="openDetailsModal(content, u.id)">
+    <td class="align-middle">{{u.id}}</td>
+    <td class="align-middle">{{(u.name !== null && u.name.length > 30) ? (u.name | slice:0:30) + '..' : (u.name)}}</td>
+    <td class="align-middle">{{u.city !== null ? u.city.name : '-'}}</td>
+    <td class="align-middle">{{(u.note !== null && u.note.length > 30) ? (u.note | slice:0:30) + '..' : (u.note)}}</td>
+    <td class="align-middle">{{u.createdTime | date:'medium'}}</td>
+    <td class="align-middle">{{u.updatedTime | date:'medium'}}</td>
+    <td class="text-center">
+      <button class="btn zoom" ngbTooltip="დეტალურად ჩვენება" [openDelay]="300" [closeDelay]="500"
+              (click)="openDetailsModal(content, u.id)">
+        <fa-icon icon="clipboard-list"></fa-icon>
+      </button>
+      <button (click)="update(content, u)" ngbTooltip="რედაქტირება" [openDelay]="300" [closeDelay]="500"
+              class="btn zoom"
+              style="margin-left: 10px;">
+        <fa-icon icon="pencil-alt"></fa-icon>
+      </button>
+      <button (click)="delete(u.id)" ngbTooltip="ჩანაწერის წაშლა" [openDelay]="300" [closeDelay]="500"
+              class="btn zoom"
+              style="margin-left: 10px;">
+        <fa-icon icon="trash-alt"></fa-icon>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">დეტალები</h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <th class="col-md-4 text-right">ID</th>
+        <td>{{selectedObject.id}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">სახელი</th>
+        <td>{{selectedObject.name}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">ქალაქი</th>
+        <td>{{selectedObject.city !== null ? selectedObject.city.name : '-'}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">შენიშვნა</th>
+        <td>{{selectedObject.note}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">შექმნის დრო</th>
+        <td>
+          {{selectedObject.createdTime | date:'medium'}}
+        </td>
+      </tr>
+      <tr>
+        <th class="text-right">განახლების დრო</th>
+        <td>
+          {{selectedObject.updatedTime  | date:'medium'}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="closeModal()">დახურვა</button>
+  </div>
+</ng-template>

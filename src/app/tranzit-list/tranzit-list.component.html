@@ -1,0 +1,93 @@
+<table class="table table-striped table-hover text-center">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>რეისის N</th>
+    <th>ტრანსპორტი</th>
+    <th>მძღოლი</th>
+    <th>მარშრუტი</th>
+    <th>თარიღი</th>
+    <th>საწყობი დან-ში</th>
+    <th>#</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let u of objectsList" (dblclick)="openDetailsModal(content, u.id)">
+    <td class="align-middle">{{u.id}}</td>
+    <td
+      class="align-middle">{{(u.number !== null && u.number.length > 30) ? (u.number | slice:0:30) + '..' : (u.number)}}</td>
+    <td class="align-middle">{{u.car !== null ? u.car.name + ' (' + u.car.number + ')' : '-'}}</td>
+    <td class="align-middle">{{u.driver !== null ? u.driver.name + u.driver.lastName : '-'}}</td>
+    <td
+      class="align-middle">{{(u.routeFrom !== null ? u.routeFrom.name : 'X') + ' - ' + (u.routeTo !== null ? u.routeTo.name : 'X')}}</td>
+    <td class="align-middle">{{u.tranzitDate | date:'short'}}</td>
+    <td
+      class="align-middle">{{(u.senderWarehouse !== null ? u.senderWarehouse.name : 'X') + ' - ' + (u.destWarehouse !== null ? u.destWarehouse.name : 'X')}}</td>
+    <td class="text-center">
+      <button class="btn zoom" ngbTooltip="დეტალურად ჩვენება" [openDelay]="300" [closeDelay]="500"
+              (click)="openDetailsModal(content, u.id)">
+        <fa-icon icon="clipboard-list"></fa-icon>
+      </button>
+      <button (click)="update(content, u)" ngbTooltip="რედაქტირება" [openDelay]="300" [closeDelay]="500"
+              class="btn zoom"
+              style="margin-left: 10px;">
+        <fa-icon icon="pencil-alt"></fa-icon>
+      </button>
+      <button (click)="delete(u.id)" ngbTooltip="ჩანაწერის წაშლა" [openDelay]="300" [closeDelay]="500"
+              class="btn zoom"
+              style="margin-left: 10px;">
+        <fa-icon icon="trash-alt"></fa-icon>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">დეტალები</h4>
+  </div>
+  <div class="modal-body">
+    <table class="table table-striped">
+      <tr>
+        <th class="col-md-4 text-right">ID</th>
+        <td>{{selectedObject.id}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">მარშრუტის N</th>
+        <td>{{selectedObject.number}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">ტრანსპორტი</th>
+        <td>{{selectedObject.car.name + ' (' + selectedObject.car.number + ')'}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">მძღოლი</th>
+        <td>{{selectedObject.driver.name}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">მარშრუტი</th>
+        <td>{{(selectedObject.routeFrom !== null ? selectedObject.routeFrom.name : 'X') + ' - ' + (selectedObject.routeTo !== null ? selectedObject.routeTo.name : 'X')}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">თარიღი</th>
+        <td>{{selectedObject.tranzitDate | date: 'short'}}</td>
+      </tr>
+      <tr>
+        <th class="text-right">შექმნის დრო</th>
+        <td>
+          {{selectedObject.createdTime | date:'medium'}}
+        </td>
+      </tr>
+      <tr>
+        <th class="text-right">განახლების დრო</th>
+        <td>
+          {{selectedObject.updatedTime  | date:'medium'}}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="closeModal()">დახურვა</button>
+  </div>
+</ng-template>

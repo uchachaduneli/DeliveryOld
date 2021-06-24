@@ -3,23 +3,35 @@
 <!--    <h5 class="card-title">თანამშრომლები</h5>-->
 <!--  </div>-->
 <!--  <div class="card-body">-->
+<button type="button" class="btn btn-outline-info btn-floating">
+  <fa-icon icon="plus"></fa-icon>
+</button>
 <table class="table table-striped table-hover text-center">
   <thead>
   <tr>
     <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Roles</th>
+    <th>სახელი</th>
+    <th>გვარი</th>
+    <th>პირადი N</th>
+    <th>ტელეფონის N</th>
+    <th>სტატუსი</th>
+    <th>როლი</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let u of objectsList" (dblclick)="openDetailsModal(content, u.id)">
     <td class="align-middle">{{u.id}}</td>
-    <td class="align-middle">{{(u.name.length > 30) ? (u.name | slice:0:30) + '..' : (u.name)}}</td>
-    <td class="align-middle">{{(u.email.length > 30) ? (u.email | slice:0:30) + '..' : (u.email)}}</td>
-    <td class="align-middle">{{u.role}}</td>
-
+    <td class="align-middle">{{(u.name !== null && u.name.length > 30) ? (u.name | slice:0:30) + '..' : (u.name)}}</td>
+    <td class="align-middle">{{(u.lastName !== null && u.lastName.length> 30) ? (u.lastName | slice:0:30) + '..' : (u.lastName)}}</td>
+    <td class="align-middle">{{u.personalNumber}}</td>
+    <td class="align-middle">{{u.phone}}</td>
+    <td class="align-middle">{{u.status.name}}</td>
+    <td class="align-middle">
+      <ul style="list-style-type: none;">
+        <li *ngFor="let r of u.role">{{r.name}}</li>
+      </ul>
+    </td>
     <td class="text-center">
       <button class="btn zoom" ngbTooltip="Show Details" [openDelay]="300" [closeDelay]="500"
               (click)="openDetailsModal(content, u.id)">
@@ -62,12 +74,12 @@ Page N {{page}}<br> Row Count{{rowCount}}
         <td>{{selectedObject.id}}</td>
       </tr>
       <tr>
-        <th class="text-right">Name</th>
+        <th class="text-right">სახელი</th>
         <td>{{selectedObject.name}}</td>
       </tr>
       <tr>
-        <th class="text-right">Email</th>
-        <td>{{selectedObject.email}}</td>
+        <th class="text-right">გვარი</th>
+        <td>{{selectedObject.lastName}}</td>
       </tr>
       <tr>
         <th class="text-right">Role</th>

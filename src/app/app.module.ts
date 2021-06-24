@@ -17,6 +17,14 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
 import {far} from "@fortawesome/free-regular-svg-icons";
 import {LoginComponent} from './login/login.component';
 import {JwtInterceptor} from "./helpers/jwt.interceptor";
+import { ZoneListComponent } from './zone-list/zone-list.component';
+import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
+import { TranzitListComponent } from './tranzit-list/tranzit-list.component';
+import { ServiceListComponent } from './service-list/service-list.component';
+import { RouteListComponent } from './route-list/route-list.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
+import { CityListComponent } from './city-list/city-list.component';
+import { CarListComponent } from './car-list/car-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +32,15 @@ import {JwtInterceptor} from "./helpers/jwt.interceptor";
     UserListComponent,
     CreateUserComponent,
     UpdateUserComponent,
-    LoginComponent
+    LoginComponent,
+    ZoneListComponent,
+    WarehouseListComponent,
+    TranzitListComponent,
+    ServiceListComponent,
+    RouteListComponent,
+    ContactListComponent,
+    CityListComponent,
+    CarListComponent
   ],
   imports: [
     BrowserModule,
